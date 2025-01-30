@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en" id="home">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angel Ann</title>
+
+    <style>
+    /* General styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    height: 100%;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.menu-button {
+    display: none;
+    cursor: pointer;
+}
+
+/* Header for navigation */
+.navbar {
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background-color: #f3f4f6;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.3);
+}
+
+.navbar .logo h1 {
+    color: #424144;
+    border-bottom: 4px solid #43e3dc;
+}
+
+.navbar .menu li {
+    list-style: none;
+    display: inline-block;
+}
+
+.navbar .menu li a {
+    display: block;
+    margin-left: 20px;
+    color: #424144;
+    border-bottom: 4px transparent;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .menu li .active {
+    border-bottom: 4px solid #43e3dc;
+}
+
+.navbar .menu li a:hover {
+    cursor: pointer;
+    border-bottom: 4px solid #43e3dc;
+}
+
+/* Content */
+.content {
+    background-image: url(image/banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #424144;
+    height: 100vh;
+}
+
+.content h1 {
+    font-size: 40px;
+}
+
+.content p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.content button {
+    margin-top: 30px;
+    padding: 15px 30px;
+    border: 10px;
+    background: #43e3dc;
+    color: black;
+    border-radius: 5px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.content button:hover {
+    transform: scale(0.5);
+}
+
+.pheading {
+    text-align: center;
+    margin: 50px 0;
+    color: #424144;
+}
+
+/* Products-css */
+.sec {
+    padding: 10px 5%;
+}
+
+.product {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.product .card {
+    width: 310px;
+    background: #f5f5f5;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+
+.product .card img {
+    height: auto;
+    width: 100%;
+}
+
+.product .card .desc {
+    padding: 5px 20px;
+    opacity: 0.8;
+}
+
+.product .card .title {
+    font-weight: 900;
+    font-size: 20px;
+    color: #424144;
+    padding: 0 20px;
+}
+
+.product .card .box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.product .card .box .price {
+    color: #43e3dc;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.product .card .box .btn {
+    font-size: 13px;
+    color: #43e3dc;
+    padding: 10px 18px;
+    font-weight: 900;
+    border: 1px solid #43e3dc;
+    border-radius: 20px;
+}
+
+.product .card .box .btn:hover {
+    cursor: pointer;
+    background-color: #43e3dc;
+    color: white;
+}
+
+/* Footer-css */
+footer {
+    background-color: #f3f4f6;
+    height: 10vh;
+}
+
+footer p {
+    text-align: center;
+    line-height: 10vh;
+}
+
+footer p a {
+    text-decoration: none;
+    color: #43e3dc;
+    font-weight: bold;
+}
+
+/* Responsive-css */
+@media (max-width: 768px) {
+    .menu {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        background: white;
+        padding: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        opacity: 0;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+
+    .menu-button {
+        display: block;
+    }
+}
+
+/* Contact-css */
+.contact-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+}
+
+.contact-section h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.contact-section span {
+    color: #43e3dc;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.contact-info {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.contact-info a {
+    text-decoration: none;
+    color: #43e3dc;
+    font-weight: bold;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.contact-form button {
+    background: #43e3dc;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.contact-form button:hover {
+    background: #43e3dc;
+}
+
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-links img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
+/* About-Section-CSS */
+.about-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+}
+
+.about-section h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.about-section span {
+    color: #43e3dc;
+}
+
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.about-text p {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><h1>Gelay Shop</h1></div>
+
+        <ul class="menu" id="menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#products">Product</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about">About us</a></li>
+            <li><a href="MyCart.html">My cart</a></li>
+        </ul>
+        
+        <!--icon-->
+        <div class="menu-button">
+            <img src="menu-icon.png" alt="error">
+        </div>
+    </nav>
+
+    <section class="content">
+        <h1>New Arrival for Women's Shorts</h1>
+        <p>Get the best Women Fashion Arrivals</p>
+        <a href="#products"><button>Shop Now</button></a>
+    </section>
+
+    <h1 class="pheading"> Our Latest <span>Products</span></h1>
+
+    <!-- Product section -->
+    <section class="sec" id="products">
+        <div class="product">
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-1.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">Casual Summer Denim Shorts</div>
+                <div class="box">
+                    <div class="price">$35</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-2.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">High-Waisted Cotton Shorts</div>
+                <div class="box">
+                    <div class="price">$40</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-3.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">Elegant Linen Beach Shorts</div>
+                <div class="box">
+                    <div class="price">$45</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-4.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">Athleisure Sports Shorts</div>
+                <div class="box">
+                    <div class="price">$30</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-5.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">Trendy Ripped Denim Shorts</div>
+                <div class="box">
+                    <div class="price">$50</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+
+            <!--Card Start-->
+            <div class="card">
+                <div class="img"><img src="product-6.jpg" alt="error"></div>
+                <div class="desc">Women</div>
+                <div class="title">Comfy Drawstring Lounge Shorts</div>
+                <div class="box">
+                    <div class="price">$28</div>
+                    <button class="btn">Add to Cart</button>
+                </div>
+            </div>
+            <!--Card end-->
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about-section">
+        <h1>About <span>Us</span></h1>
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Welcome to Gelay Shop!</h2>
+                <p>
+                    Gelay Shop was founded with a passion for fashion and a commitment to quality. 
+                    We bring you the latest trends in women's fashion, offering high-quality, stylish, and affordable products. 
+                    Our mission is to empower women to feel confident and beautiful in every outfit they wear.
+                </p>
+                <p>
+                    From trendy shorts to chic dresses, we carefully curate our collection to suit every style.
+                    Join us on our journey to redefine fashion with elegance and comfort.
+                </p>
+            </div>
+            <div class="about-image">
+                <img src="image/about-us.jpg" alt="Gelay Shop">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h1>Contact <span>Us</span></h1>
+        <p>We'd love to hear from you! Reach out via our contact form or social media.</p>
+
+        <div class="contact-container">
+            <!-- Contact Details -->
+            <div class="contact-info">
+                <p><strong>📍 Location:</strong> 123 Fashion Street, New York, USA</p>
+                <p><strong>📞 Phone:</strong> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                <p><strong>✉ Email:</strong> <a href="mailto:info@gelayshop.com">info@gelayshop.com</a></p>
+            </div>
+
+        <div class="contact-container">
+            <!-- Contact Form -->
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+
+            <!-- Social Media Links -->
+            <div class="social-links">
+                <a href="https://www.facebook.com/jaslynannalou.camote" target="_blank"><img src="fb-icon.png" alt="error"></a>
+                <a href="https://www.tiktok.com/@angelann122715?_t=ZS-8tV2MkSR0QU&_r=1" target="_blank"><img src="tiktok-icon.png" alt="error"></a>
+                <a href="https://www.instagram.com/angelannocenar?igsh=MWhlbndlYmNudDlsbw==" target="_blank"><img src="ig-icon.png" alt="error"></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer-section -->
+     <footer>
+        <p>Copyright @ <a href="#home">Gelay Shops</a></p>
+     </footer>
+
+     <script>
+        //Navigation bar function//
+        document.addEventListener("DOMContentLoaded", function () {
+        const menuButton = document.querySelector(".menu-button");
+        const menu = document.getElementById("menu");
+
+        menuButton.addEventListener("click", function () {
+            menu.classList.toggle("active");
+
+            // Animate menu appearance
+            if (menu.classList.contains("active")) {
+                menu.style.transform = "translateX(0)";
+                menu.style.opacity = "1";
+            } else {
+                menu.style.transform = "translateX(100%)";
+                menu.style.opacity = "0";
+            }
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartMenu = document.querySelector('.menu li a[href="#"]'); // "My Cart" link
+    const cartList = document.createElement("ul"); // To display cart items
+
+    // Function to update the cart in localStorage and display it
+    function updateCart() {
+        localStorage.setItem("cart", JSON.stringify(cart));
+
+        // Clear old cart display
+        cartList.innerHTML = "";
+
+        // Display each item in the cart
+        cart.forEach((item, index) => {
+            const li = document.createElement("li");
+            li.textContent = `${item.name} - ${item.price}`;
+            cartList.appendChild(li);
+        });
+    }
+
+    // Add event listener to "Add to Cart" buttons
+    document.querySelectorAll(".btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const productCard = this.closest(".card");
+            const productName = productCard.querySelector(".title").textContent;
+            const productPrice = productCard.querySelector(".price").textContent;
+
+            // Add product to cart
+            cart.push({ name: productName, price: productPrice });
+            updateCart();
+            alert(`${productName} added to cart!`);
+        });
+    });
+
+    // Show the cart items when "My Cart" is clicked
+    cartMenu.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevents page refresh
+        alert(cart.length > 0 ? `My Cart:\n${cart.map(item => `${item.name} - ${item.price}`).join("\n")}` : "Your cart is empty!");
+    });
+
+    // Initialize cart display
+    cartMenu.appendChild(cartList);
+});
+
+     </script>
+</body>
+</html>
